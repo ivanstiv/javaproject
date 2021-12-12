@@ -1,5 +1,5 @@
 public class HomeWorkApp {
-    static void main(String[] args) {
+    public static void main(String[] args) {
         printThreeWords();
         checkSumSign();
         printColor();
@@ -15,8 +15,9 @@ public class HomeWorkApp {
     static void checkSumSign() {
         int a = 3;
         int b = 4;
+        String result = (a+b >= 0) ? "Сумма положительная" : "Сумма отрицательная";
 
-        (a+b >= 0) ? System.out.println("Сумма положительная") : System.out.println("Сумма отрицательная");
+        System.out.println(result);
     }
 
     static void printColor() {
@@ -34,7 +35,8 @@ public class HomeWorkApp {
     static void compareNumbers() {
         int a = 3;
         int b = 4;
+        String result = (a >= b) ? "a >= b" : "a < b";
 
-        (a >= b) ? System.out.println("a >= b") : System.out.println("a < b");
+        System.out.println(result);
     }
 }
