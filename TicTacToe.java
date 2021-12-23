@@ -7,20 +7,21 @@ import java.util.Scanner;
 import java.util.Random;
 
 class TicTacToe {
-    final char sign_x = 'x';
-    final char sign_0 = '0';
+    final char SIGN_X = 'x';
+    final char SIGN_0 = '0';
     final char SIGN_EMPTY = '.';
     char[][] table;
     Scanner sc;
     Random random;
 
     public static void main(String[] args) {
-        TicTacToe ttt = new TicTacToe();
-        ttt.game();
+        new TicTacToe().game();
     }
 
-    void game() {
-        System.out.println("game");
+    TicTacToe() {
+        table = new char[3][3];
+        sc = new Scanner(System.in);
+        random = new Random();
     }
 
     void game() {
@@ -29,7 +30,17 @@ class TicTacToe {
         while (true) {
             turnHuman();
             if (isWin(SIGN_X)) {
-                System.out.println("YOU WON!");
+                System.out.println("AI WON!");
+                break;
+            }
+            if (isTableFull()) {
+                System.out.println("Sorry, DRAW...");
+                break;
+            }
+            turnAi();
+            printTable();
+            if (isWin(SIGN_0)) {
+                System.out.println("AI WON");
                 break;
             }
             if (isTableFull()) {
@@ -55,19 +66,7 @@ class TicTacToe {
             }
             System.out.println();
         }
-    }
-
-    void turnHuman() {
-        int x, y;
-    }
-
-    void printTable() {
-        for (int y = 0; y < table.length; y++) {
-            for (int x = 0; x < table.length; x++) {
-                System.out.print(table[y][x] + " ");
-            }
-            System.out.println();
-        }
+        System.out.println();
     }
 
     void turnHuman() {
@@ -86,7 +85,7 @@ class TicTacToe {
             x = random.nextInt(3);
             y = random.nextInt(3);
         } while (!isCellValid(x, y));
-        table[y][x] = SIGN_O;
+        table[y][x] = SIGN_0;
     }
 
     boolean isCellValid(int x, int y) {
@@ -97,11 +96,14 @@ class TicTacToe {
     }
 
     boolean isWin(char ch) {
-        //
-        if (table[0][0] == ch && table[0][1] == ch && table[0][2] == ch) return true;
-        if (table[1][0] == ch && table[1][1] == ch && table[1][2] == ch) return true;
-        if (table[2][0] == ch && table[2][1] == ch && table[2][2] == ch) return true;
-        //
+        for (int x = 0; x < table.length; x++) {
+            if (table[x][0] == ch && table[x][1] == ch && table[x][2] == ch) return true;
+            if (table[0][x] == ch && table[1][x] == ch && table[2][x] == ch) return true;
+        }
+
+        if (table[0][0] == ch && table[1][1] == ch && table[2][2] == ch) return true;
+        if (table[2][0] == ch && table[1][1] == ch && table[0][2] == ch) return true;
+
         return false;
     }
 
