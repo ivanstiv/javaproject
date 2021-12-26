@@ -1,5 +1,4 @@
 public class Animal  {
-    private int maxSwimLength;
     public static void main(String[] args) {
         Cat cat = new Cat();
         Dog dog = new Dog();
