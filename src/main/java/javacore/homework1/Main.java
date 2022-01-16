@@ -18,5 +18,6 @@ public class Main {
 
         Course course = new Course(new Cross(5), new Swimming(5), new Fight(7));
         course.doIt(dreamTeam);
+        dreamTeam.showResults();
     }
 }
